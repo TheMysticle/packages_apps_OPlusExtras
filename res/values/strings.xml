@@ -85,6 +85,10 @@
     <string name="antiflicker_info">May degrade color accuracy and affect the way some items are displayed</string>
     <string name="hbm_title">High brightness mode</string>
     <string name="hbm_summary">Enable peak luminance</string>
+    <string name="auto_hbm_title">Auto High brightness mode</string>
+    <string name="auto_hbm_summary">Automatically enable HBM under direct sunlight</string>
+    <string name="tile_on">On</string>
+    <string name="tile_off">Off</string>
     <string name="hbm_info">Long time usage of High brightness mode may damage your display</string>
     <string name="keep_pcc_title">Keep PCC enabled</string>
     <string name="keep_pcc_summary">Don\'t turn off Panel Color Correction (Night Light, Kcal) when pressing on the UDFPS circle</string>

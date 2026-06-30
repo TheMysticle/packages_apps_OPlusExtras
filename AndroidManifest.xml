@@ -37,7 +37,7 @@
             android:label="@string/oplus_extras_title"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
+                <action android:name="com.android.settings.action.IA_SETTINGS" />
             </intent-filter>
             <meta-data
                 android:name="com.android.settings.icon"
@@ -127,6 +127,32 @@
         <service
             android:name=".doze.DozeService"
             android:permission="OneplusDozeService" />
+
+        <!-- Auto HBM Service -->
+        <service android:name=".autohbm.AutoHbmService"
+                 android:exported="false" />
+
+        <service
+            android:name=".autohbm.HbmTileService"
+            android:icon="@drawable/ic_oplus_extras"
+            android:label="@string/hbm_title"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".autohbm.AutoHbmTileService"
+            android:icon="@drawable/ic_oplus_extras"
+            android:label="@string/auto_hbm_title"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
 
         <!-- Search Provider -->
         <provider

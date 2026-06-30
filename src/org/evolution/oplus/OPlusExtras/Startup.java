@@ -28,6 +28,7 @@ public class Startup extends BroadcastReceiver {
             OPlusExtras.restoreTouchboostSetting(context);
             OPlusExtras.restoreAntiFlickerSetting(context);
             OPlusExtras.restoreHBMSetting(context);
+            OPlusExtras.restoreAutoHBMSetting(context);
             OPlusExtras.restoreMaxBrightnessSetting(context);
             OPlusExtras.restoreKeepPCCSetting(context);
             OPlusExtras.restoreFSyncSetting(context);

@@ -85,6 +85,11 @@
             android:title="@string/hbm_title"
             android:summary="@string/hbm_summary" />
 
+        <SwitchPreference
+            android:key="auto_hbm"
+            android:title="@string/auto_hbm_title"
+            android:summary="@string/auto_hbm_summary" />
+
         <Preference
             android:key="hbm_info"
             android:icon="@drawable/ic_info_outline"

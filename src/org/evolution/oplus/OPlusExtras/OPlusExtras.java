@@ -58,6 +58,9 @@ public class OPlusExtras extends PreferenceFragment
     private static final String KEY_HBM = "hbm";
     private static final String KEY_HBM_INFO = "hbm_info";
     private SwitchPreference mHBMModeSwitch;
+    
+    private static final String KEY_AUTO_HBM = "auto_hbm";
+    private SwitchPreference mAutoHbmModeSwitch;
 
     private static final String KEY_KCAL = "kcal";
 
@@ -189,16 +192,23 @@ public class OPlusExtras extends PreferenceFragment
 
         // High brightness mode switch
         mHBMModeSwitch = (SwitchPreference) findPreference(KEY_HBM);
+        mAutoHbmModeSwitch = (SwitchPreference) findPreference(KEY_AUTO_HBM);
         if (Utils.isFileWritable(Nodes.nodeHBM(context))) {
             mHBMModeSwitch.setEnabled(true);
             mHBMModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_HBM, false));
             mHBMModeSwitch.setOnPreferenceChangeListener(this);
+            
+            mAutoHbmModeSwitch.setEnabled(true);
+            mAutoHbmModeSwitch.setChecked(sharedPrefs.getBoolean(KEY_AUTO_HBM, false));
+            mAutoHbmModeSwitch.setOnPreferenceChangeListener(this);
         } else {
             mHBMModeSwitch.setEnabled(false);
+            mAutoHbmModeSwitch.setEnabled(false);
         }
 
        if (!getResources().getBoolean(R.bool.config_deviceSupportsHBM)) {
             findPreference(KEY_HBM).setVisible(false);
+            findPreference(KEY_AUTO_HBM).setVisible(false);
             findPreference(KEY_HBM_INFO).setVisible(false);
         }
 
@@ -453,6 +463,17 @@ public class OPlusExtras extends PreferenceFragment
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             sharedPrefs.edit().putBoolean(KEY_HBM, enabled).commit();
             Utils.writeValue(Nodes.nodeHBM(getContext()), enabled ? "1" : "0");
+            return true;
+        // Auto HBM switch
+        } else if (preference == mAutoHbmModeSwitch) {
+            boolean enabled = (Boolean) newValue;
+            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+            sharedPrefs.edit().putBoolean(KEY_AUTO_HBM, enabled).commit();
+            if (enabled) {
+                getContext().startService(new android.content.Intent(getContext(), org.evolution.oplus.OPlusExtras.autohbm.AutoHbmService.class));
+            } else {
+                getContext().stopService(new android.content.Intent(getContext(), org.evolution.oplus.OPlusExtras.autohbm.AutoHbmService.class));
+            }
             return true;
         // Maximum brightness preference
         } else if (preference == mMaxBrightnessPreference) {
@@ -860,6 +881,17 @@ public class OPlusExtras extends PreferenceFragment
             SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
             boolean value = sharedPrefs.getBoolean(KEY_HBM, false);
             Utils.writeValue(Nodes.nodeHBM(context), value ? "1" : "0");
+        }
+    }
+
+    // Auto HBM switch
+    public static void restoreAutoHBMSetting(Context context) {
+        if (Utils.isFileWritable(Nodes.nodeHBM(context))) {
+            SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+            boolean value = sharedPrefs.getBoolean(KEY_AUTO_HBM, false);
+            if (value) {
+                context.startService(new android.content.Intent(context, org.evolution.oplus.OPlusExtras.autohbm.AutoHbmService.class));
+            }
         }
     }
 
