@@ -6,6 +6,8 @@
 
 package org.evolution.oplus.OPlusExtras.kcal;
 
+import org.evolution.oplus.OPlusExtras.R;
+
 import android.app.Fragment;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -32,15 +34,15 @@ public class KcalActivity extends CollapsingToolbarBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(com.android.settingslib.collapsingtoolbar.R.layout.kcal);
+        setContentView(R.layout.kcal);
 
         setupImageSlider();
 
-        Fragment fragment = getFragmentManager().findFragmentById(com.android.settingslib.collapsingtoolbar.R.id.kcal);
+        Fragment fragment = getFragmentManager().findFragmentById(R.id.kcal);
         if (fragment == null) {
             mKcalFragment = new Kcal();
             getFragmentManager().beginTransaction()
-                .add(com.android.settingslib.collapsingtoolbar.R.id.kcal, mKcalFragment)
+                .add(R.id.kcal, mKcalFragment)
                 .commit();
         } else {
             mKcalFragment = (Kcal) fragment;
@@ -48,8 +50,8 @@ public class KcalActivity extends CollapsingToolbarBaseActivity {
     }
 
     private void setupImageSlider() {
-        viewPager = (ViewPager) findViewById(com.android.settingslib.collapsingtoolbar.R.id.preview);
-        sliderDotspanel = (LinearLayout) findViewById(com.android.settingslib.collapsingtoolbar.R.id.SliderDots);
+        viewPager = (ViewPager) findViewById(R.id.preview);
+        sliderDotspanel = (LinearLayout) findViewById(R.id.SliderDots);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getApplicationContext());
         viewPager.setAdapter(viewPagerAdapter);
@@ -59,14 +61,14 @@ public class KcalActivity extends CollapsingToolbarBaseActivity {
 
         for(int i = 0; i < dotscount; i++) {
             dots[i] = new ImageView(getApplicationContext());
-            dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), com.android.settingslib.collapsingtoolbar.R.drawable.inactive_dot));
+            dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.inactive_dot));
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             params.setMargins(8, 0, 8, 0);
             sliderDotspanel.addView(dots[i], params);
         }
 
-        dots[0].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), com.android.settingslib.collapsingtoolbar.R.drawable.active_dot));
+        dots[0].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.active_dot));
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
@@ -78,9 +80,9 @@ public class KcalActivity extends CollapsingToolbarBaseActivity {
             public void onPageSelected(int position) {
 
                 for(int i = 0; i< dotscount; i++){
-                    dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), com.android.settingslib.collapsingtoolbar.R.drawable.inactive_dot));
+                    dots[i].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.inactive_dot));
                 }
-                dots[position].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), com.android.settingslib.collapsingtoolbar.R.drawable.active_dot));
+                dots[position].setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.active_dot));
             }
 
             @Override
