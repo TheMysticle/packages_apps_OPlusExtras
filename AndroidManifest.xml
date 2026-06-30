@@ -27,6 +27,8 @@
 
     <permission android:name="com.oplus.permission.safe.SECURITY" android:protectionLevel="normal" />
 
+    <permission android:name="oppo.permission.OPPO_COMPONENT_SAFE" android:protectionLevel="normal" />
+
     <application
         android:icon="@drawable/ic_launcher_settings"
         android:label="@string/oplus_extras_title"
