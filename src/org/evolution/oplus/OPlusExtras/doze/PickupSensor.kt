@@ -39,7 +39,7 @@ class PickupSensor(
             if (DozeUtils.isPickUpSetToWake(context)) {
                 wakeLock.acquire(WAKELOCK_TIMEOUT_MS)
                 powerManager.wakeUpWithProximityCheck(
-                    SystemClock.uptimeMillis(), PowerManager.WAKE_REASON_GESTURE, TAG
+                    SystemClock.uptimeMillis(), PowerManager.WAKE_REASON_GESTURE, TAG, android.view.Display.DEFAULT_DISPLAY
                 )
             } else {
                 DozeUtils.launchDozePulse(context)
