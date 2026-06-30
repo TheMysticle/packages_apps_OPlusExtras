@@ -23,6 +23,8 @@
     <protected-broadcast android:name="org.evolution.oplus.OPlusExtras.slider.UPDATE_SLIDER_SETTINGS" />
     <protected-broadcast android:name="org.evolution.oplus.OPlusExtras.touch.UPDATE_SETTINGS" />
 
+    <permission android:name="oplus.permission.OPLUS_COMPONENT_SAFE" android:protectionLevel="normal" />
+
     <application
         android:icon="@drawable/ic_launcher_settings"
         android:label="@string/oplus_extras_title"
