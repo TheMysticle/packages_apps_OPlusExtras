@@ -51,6 +51,7 @@ public final class NotificationRingerController extends SliderControllerBase {
                     public void run() {
                         if (mRingMode != RINGER_VIBRATE) return;
                         mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_VIBRATE);
+                        mAudioManager.adjustVolume(AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
                     }
                 }, CHANGE_DELAY);
                 return SliderConstants.MODE_VIBRATE;
@@ -62,12 +63,14 @@ public final class NotificationRingerController extends SliderControllerBase {
                     public void run() {
                         if (mRingMode != RINGER_SILENT) return;
                         mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_SILENT);
+                        mAudioManager.adjustVolume(AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
                     }
                 }, CHANGE_DELAY);
                 return SliderConstants.MODE_SILENT;
             case NOTIFICATION_TOTAL_SILENCE:
                 mZenMode = NOTIFICATION_TOTAL_SILENCE;
                 mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_SILENT);
+                mAudioManager.adjustVolume(AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -79,6 +82,7 @@ public final class NotificationRingerController extends SliderControllerBase {
             case NOTIFICATION_PRIORITY_ONLY:
                 mZenMode = NOTIFICATION_PRIORITY_ONLY;
                 mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_NORMAL);
+                mAudioManager.adjustVolume(AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -95,6 +99,7 @@ public final class NotificationRingerController extends SliderControllerBase {
                     public void run() {
                         if (mRingMode != NOTIFICATION_ALL) return;
                         mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_NORMAL);
+                        mAudioManager.adjustVolume(AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
                     }
                 }, CHANGE_DELAY);
                 return SliderConstants.MODE_NONE;

@@ -39,6 +39,7 @@ public final class RingerController extends SliderControllerBase {
         Log.d(TAG, "slider action: " + action);
         if (MODES.indexOfKey(action) >= 0) {
             mAudioManager.setRingerModeInternal(MODES.get(action));
+            mAudioManager.adjustVolume(AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
             switch (action) {
                 case RINGER_NORMAL:
                     return SliderConstants.MODE_RING;
